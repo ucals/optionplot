@@ -37,15 +37,20 @@ string getUrl(const char *x)
 
 int main()
 {
+    string symbol;
+    cout << "Enter the symbol: ";
+    cin >> symbol;
+    string fname = symbol + ".json";
+
 	// ifstream t("data.json");
 	// stringstream buffer;
 	// buffer << t.rdbuf();
-	string buffer = getUrl("https://query2.finance.yahoo.com/v7/finance/options/^SPX");  // ^SPX
+	string buffer = getUrl(("https://query2.finance.yahoo.com/v7/finance/options/" + symbol).c_str());  // ^SPX
 
 	json j_complete = json::parse(buffer);
 	// cout << setw(4) << j_complete << endl;
 
-	ofstream myfile ("SPX.json");
+	ofstream myfile(fname);
 	if (myfile.is_open())
 	{
 		myfile << setw(4) << j_complete << endl;
