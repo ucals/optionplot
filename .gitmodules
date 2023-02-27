@@ -1,3 +1,6 @@
 [submodule "external/matplotplusplus"]
 	path = external/matplotplusplus
 	url = https://github.com/alandefreitas/matplotplusplus.git
+[submodule "external/json"]
+	path = external/json
+	url = https://github.com/nlohmann/json.git
