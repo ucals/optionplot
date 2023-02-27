@@ -17,10 +17,11 @@ set(BUILD_GTEST ON CACHE BOOL "" FORCE)
 
 FetchContent_MakeAvailable(googletest)
 
-# file(GLOB_RECURSE SRC_FILES src/*.cpp)
+file(GLOB_RECURSE SRC_FILES src/*.cpp)
 add_executable(
 	${PROJECT_NAME} 
-	src/main.cpp
+	# src/main.cpp
+	${SRC_FILES}
 )
 
 # Matplot++
@@ -43,11 +44,18 @@ target_link_libraries(
 # Testing
 enable_testing()
 
+list(FILTER SRC_FILES EXCLUDE REGEX ".*main\\.cpp$")
+# message("${SRC_FILES}")
 file(GLOB_RECURSE TEST_FILES test/*.cpp)
 add_executable(
 	optionplot_test
 	${TEST_FILES}
+	${SRC_FILES}
 )
+target_include_directories(optionplot_test
+  PUBLIC
+    src/
+  )
 
 target_link_libraries(
 	optionplot_test
