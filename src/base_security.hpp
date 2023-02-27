@@ -30,7 +30,7 @@ namespace CarlosSouza
 		BaseSecurity(const BaseSecurity& ref);
 		~BaseSecurity();
 
-		map<string, double> priceHistory();
+		map<time_t, double> priceHistory();
 		void plotPriceHistory();
 		vector<double> randomPriceDist(time_t t_future_date, int t_num_simulations);
 		void plotRandomPriceDist(time_t t_future_date, int t_num_simulations);

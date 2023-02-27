@@ -4,6 +4,7 @@
 //
 // This file implements utility functions
 //
+#include <iostream>
 #include <curl/curl.h>
 #include "util.hpp"
 
@@ -47,4 +48,31 @@ namespace CarlosSouza {
 		return j_complete;
 	}
 
+	json getYahooFinanceDailyPriceData(string symbol)
+	{
+		// Fix a bug in Yahoo: ^SPX has no history, but ^GSPC has
+		if (symbol == "^SPX") symbol = "^GSPC";
+
+		string url = "https://query2.finance.yahoo.com/v8/finance/chart/" + symbol;
+		url += "?interval=1d&range=10y";
+		string buffer = getUrl((url).c_str());
+		json j_complete = json::parse(buffer);
+
+		return j_complete;
+	}
+
 }
+
+/*
+https://query1.finance.yahoo.com/v7/finance/download/"
+            + symbol
+            + "?period1=" + ss1.str()
+            + "&period2=" + ss2.str()
+
+
+https://query1.finance.yahoo.com/v7/finance/download/TSLA?period1=1425070234&period2=1677531100&interval=1d
+
+
+
+https://query2.finance.yahoo.com/v8/finance/chart/TSLA
+*/
