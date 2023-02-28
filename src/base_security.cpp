@@ -75,7 +75,7 @@ namespace CarlosSouza
 
 		vector<time_t> x;
 		vector<int> z;
-	    vector<double> y;
+		vector<double> y;
 		int i = 0;
 		map<time_t, double>::iterator it;
 		for (it = data.begin(); it != data.end(); it++)
